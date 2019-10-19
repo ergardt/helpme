@@ -1,35 +1,37 @@
 #include "TXLib.h"
 #include <cmath>
 
-struct structBall
+class classBall
 
 {
-float x;
-float y;
-float r;
-float vx;
-float vy;
-float R;
-float G;
-float B;
-float dt = 0.1;
+public:
+	float x;
+	float y;
+	float r;
+	float vx;
+	float vy;
+	float R;
+	float G;
+	float B;
+	float dt = 0.1;
 
 };
 
-struct structPlatform
+class classPlatform
 {
-float x = 0;
-float y = 0;
-float l = 0;
-float w = 0;
-float v = 0;
-float R = 0;
-float G = 0;
-float B = 0;
-float dt = 0.1;
+public:
+	float x = 0;
+	float y = 0;
+	float l = 0;
+	float w = 0;
+	float v = 0;
+	float R = 0;
+	float G = 0;
+	float B = 0;
+	float dt = 0.1;
 };
 
-void drawBall(structBall Ball)
+void drawBall(classBall Ball)
 {
     for (int i=Ball.r; Ball.r>0; Ball.r--)
 
@@ -42,7 +44,7 @@ void drawBall(structBall Ball)
     }
 }
 
-void moveBall(structBall* Ball)
+void moveBall(classBall* Ball)
 {
 if ((*Ball).y < (*Ball).r)
 (*Ball).vy = -(*Ball).vy;
@@ -70,7 +72,7 @@ if (GetAsyncKeyState(VK_LEFT))
 
 }*/
 
-void collideBallPlatform(structBall* Ball, structPlatform* Platform /*,
+void collideBallPlatform(classBall* Ball, classPlatform* Platform /*,
 float x0_blocks, float y0_blocks, float x_plat, float y_plat, int lx, int ly, int kx, int ky, int arr*/)
 {
 if (((*Platform).x <= (*Ball).x - (*Ball).r) and ((*Ball).x + (*Ball).r<= (*Platform).x + (*Platform).l) and ((*Ball).y + (*Ball).r == (*Platform).y))
@@ -92,7 +94,7 @@ txRectangle(tmp_x*(lx+kx), tmp_y*(ly+ky), tmp_x*(lx+kx) + lx, tmp_y*(ly+ky) + ly
 */
 }
 
-void collideBalls(structBall* Ball1, structBall* Ball2)
+void collideBalls(classBall* Ball1, classBall* Ball2)
 {   
     if (sqrt(((*Ball1).x-(*Ball2).x)^2+((*Ball1).y-(*Ball2).y)^2) <= (*Ball1).r + (*Ball2).r)
         {
@@ -106,7 +108,7 @@ void collideBalls(structBall* Ball1, structBall* Ball2)
 
 
 
-void drawPlatform(structPlatform Platform)
+void drawPlatform(classPlatform Platform)
 {
 
     int rgb = RGB(Platform.R, Platform.G, Platform.B);
@@ -126,7 +128,7 @@ void drawPlatform(structPlatform Platform)
     txSetFillColor(RGB(0,0,0));
 }
 
-void movePlatformDown(structPlatform* Platform)
+void movePlatformDown(classPlatform* Platform)
 {
     if ((*Platform).x > 800-(*Platform).l or (*Platform).x < 0)
       (*Platform).v = -(*Platform).v;
@@ -146,7 +148,7 @@ if (GetAsyncKeyState(VK_LEFT))
 
 }
 
-void movePlatformUp(structPlatform* Platform)
+void movePlatformUp(classPlatform* Platform)
 {
 if ((*Platform).x > 800-(*Platform).l or (*Platform).x < 0)
 (*Platform).v = -(*Platform).v;
