@@ -27,13 +27,7 @@ public:
         B = tB;
 
     }*/
-    
-
-};
-
-
-
-void drawBall(Ball Ball, sf::RenderWindow* window)
+    void drawBall(Ball Ball, sf::RenderWindow* window)
     {   
         sf::CircleShape shape(100);
         for (int i=Ball.r; i>0; i--)
@@ -42,20 +36,26 @@ void drawBall(Ball Ball, sf::RenderWindow* window)
                 shape.setFillColor(sf::Color(Ball.R - (Ball.R*i/Ball.r), Ball.G-(Ball.G*i/Ball.r), Ball.B-(Ball.B*i/Ball.r)));
                 shape.setPosition(Ball.x - i, Ball.y - i);
                 window->draw(shape);
-        }
-}
+	}
+    }
 
 
-void moveBall(Ball* Ball)
-{
-    (*Ball).x += (*Ball).vx * (*Ball).dt;
-    (*Ball).y += (*Ball).vy * (*Ball).dt;
-    if (((*Ball).y < (*Ball).r) or ((*Ball).y > 600 - (*Ball).r))
-        (*Ball).vy = -(*Ball).vy;
-    if ((*Ball).x > 800-(*Ball).r or (*Ball).x < (*Ball).r)
-        (*Ball).vx = -(*Ball).vx;
+	void moveBall(Ball* Ball)
+	{
+	    (*Ball).x += (*Ball).vx * (*Ball).dt;
+	    (*Ball).y += (*Ball).vy * (*Ball).dt;
+	    if (((*Ball).y < (*Ball).r) or ((*Ball).y > 600 - (*Ball).r))
+		(*Ball).vy = -(*Ball).vy;
+	    if ((*Ball).x > 800-(*Ball).r or (*Ball).x < (*Ball).r)
+		(*Ball).vx = -(*Ball).vx;
 
-}
+	}
+
+};
+
+
+
+
 
 void collideBalls(Ball* Ball1, Ball* Ball2)
 {   
