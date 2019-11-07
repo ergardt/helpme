@@ -46,8 +46,8 @@ int main()
         {
             for (int k = 0; k < 100; k++ )
             {
-                drawBall(Balls[k], &window);
-                moveBall(&Balls[k]);
+                Balls[k].drawBall(Balls[k], &window);
+                Balls[k].moveBall(&Balls[k]);
                 for (int m = 0; m < 100; m++)
                 {
                     collideBalls(&Balls[m], &Balls[k]);
