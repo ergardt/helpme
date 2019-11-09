@@ -29,17 +29,6 @@ public:
         }
 	}
 
-	/*void moveBall(Ball* Ball)
-	{
-	    (*Ball).x += (*Ball).vx * (*Ball).dt;
-	    (*Ball).y += (*Ball).vy * (*Ball).dt;
-	    if (((*Ball).y < (*Ball).r) or ((*Ball).y > 600 - (*Ball).r))
-	        (*Ball).vy = -(*Ball).vy;
-	    if ((*Ball).x > 800-(*Ball).r or (*Ball).x < (*Ball).r)
-	        (*Ball).vx = -(*Ball).vx;
-
-	}*/
-
 	void moveBall(Ball* Ball)
 	{
 	    (*Ball).pos.x += (*Ball).vel.x * (*Ball).dt;
