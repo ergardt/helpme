@@ -43,7 +43,7 @@ int main()
 
 
     Sprite block[10000];
-    int collisions[100];
+    int collisions[1000];
 
 
     int n = 0;
@@ -55,7 +55,7 @@ int main()
         for (int j = 0; j <= 1; j++)
           {  
              collisions[n] = int(5);
-             block[n].setTexture(t6);
+             block[n].setTexture(t1);
              block[n].setPosition(i*50,j*24);
              n++;
           }
@@ -74,14 +74,14 @@ int main()
              block[n].setPosition(i*50,j*24);
              n++;
           }
-        for (int j = 3; j < 4; j++)
+        for (int j = 6; j <= 7; j++)
           {
             collisions[n] = int(2);
              block[n].setTexture(t7);
              block[n].setPosition(i*50,j*24);
              n++;
           }
-        for (int j = 4; j < 5; j++)
+        for (int j =8; j <= 9; j++)
           {
             collisions[n] = int(1);
              block[n].setTexture(t8);
