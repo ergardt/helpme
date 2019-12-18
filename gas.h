@@ -6,42 +6,40 @@ class Ball
 
 {
 public:
-	vector2f pos;
-	vector2f vel;
+	Vector2f pos;
+	Vector2f vel;
 	float r;
 	float R;
 	float G;
 	float B;
-	float dt = 0.1;
+	float dt = 0.05;
 	Ball()
 	{
 
 	}
-	void drawBall(Ball Ball, sf::RenderWindow* window)
+	void draw(sf::RenderWindow* window)
     {   
-        sf::CircleShape shape(100);
-        for (int i=Ball.r; i>0; i--)
+        sf::CircleShape shape(r);
+        for (int i = r; i > 0; i--)
         {
                 shape.setRadius(i); 
-                shape.setFillColor(sf::Color(Ball.R - (Ball.R*i/Ball.r), Ball.G-(Ball.G*i/Ball.r), Ball.B-(Ball.B*i/Ball.r)));
-                shape.setPosition(Ball.pos.x - i, Ball.pos.y - i);
+                shape.setFillColor(sf::Color(R - (R * i/ r), G - (G * i / r), B - (B * i / r)));
+                shape.setPosition(pos.x - i, pos.y - i);
                 window->draw(shape);
         }
 	}
-
-	void moveBall(Ball* Ball)
+	void move(float dt)
 	{
-	    (*Ball).pos.x += (*Ball).vel.x * (*Ball).dt;
-	    (*Ball).pos.y += (*Ball).vel.y * (*Ball).dt;
-	    if (((*Ball).pos.y < (*Ball).r) or ((*Ball).pos.y > 600 - (*Ball).r))
-	        (*Ball).vel.y = -(*Ball).vel.y;
-	    if ((*Ball).pos.x > 800-(*Ball).r or (*Ball).pos.x < (*Ball).r)
-	        (*Ball).vel.x = -(*Ball).vel.x;
+	    pos.x += vel.x * dt;
+	    pos.y += vel.y * dt;
+	    
+	    if ((pos.y < r) or (pos.y > (600 - r)))
+			vel.y = -(vel.y);
+	    if ((pos.x > 800 - r) or (pos.x < r))
+	        vel.x = -(vel.x);
 
 	}
-
-	
-    Ball(vector2f tpos, vector2f tvel, float tr,  float tR, float tG, float tB)
+    Ball(Vector2f tpos, Vector2f tvel, float tr,  float tR, float tG, float tB)
     {
         pos = tpos;
         vel = tvel;
@@ -51,19 +49,19 @@ public:
         B = tB;
 
     }
-    
-
 };
 
-void collideBalls(Ball* Ball1, Ball* Ball2)
-	{   
-	    if ((((*Ball1).pos.x-(*Ball2).pos.x) * ((*Ball1).pos.x-(*Ball2).pos.x) + ((*Ball1).pos.y-(*Ball2).pos.y) * ((*Ball1).pos.y-(*Ball2).pos.y)) <= ((*Ball1).r + (*Ball2).r) * ((*Ball1).r + (*Ball2).r) )
-	        {		
 
-	                (*Ball1).vel.x = -(*Ball1).vel.x;
-	                (*Ball2).vel.y = -(*Ball2).vel.y;
-	                (*Ball2).vel.x = -(*Ball2).vel.x;
-	                (*Ball1).vel.y = -(*Ball1).vel.y;         
-	       }
-	}
+void collideBalls(Ball* Ball1, Ball* Ball2)
+            {   
+                if ((((*Ball1).pos.x-(*Ball2).pos.x) * ((*Ball1).pos.x-(*Ball2).pos.x) + ((*Ball1).pos.y-(*Ball2).pos.y) * ((*Ball1).pos.y-(*Ball2).pos.y)) <= ((*Ball1).r + (*Ball2).r) * ((*Ball1).r + (*Ball2).r) )
+                    {       
+
+                            Vector2f cVel = add((*Ball1).vel, (*Ball2).vel);
+                            Vector2f cPos = add((*Ball1).pos, (*Ball2).pos);
+                          	(*Ball1).vel = sub(cVel, (*Ball1).vel);
+                          	(*Ball2).vel = sub(cVel, (*Ball2).vel);
+                 
+                   }
+            }
 
