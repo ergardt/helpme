@@ -12,6 +12,7 @@ int getRandomNumber(int min, int max)
 int main()
 {
 	int n;
+	srand(time(0));
 	cout << "Enter n" << endl;
 	cin >> n;
 	vector <int> vec1(n);
@@ -32,8 +33,6 @@ int main()
 
 	cout << endl;
 	 
-	vec1.clear();
-	vec2.clear();
 	return 0;
 
 }
