@@ -35,7 +35,7 @@ A = float(max(abs(a2), abs(a3), abs(a4), abs(a5), abs(a6), abs(a7)))
 B = float(max(abs(a2), abs(a3), abs(a4), abs(a5), abs(a6), abs(a1)))
 minBorder = float(abs(a7) / (abs(a7) + B))
 maxBorder = 1 + A/a1
-center = (maxBorder - minBorder)/2
+
 
 #print("Нижняя граница ",minBorder, "Верхняя граница ", maxBorder)
 
@@ -46,6 +46,7 @@ def equate(b1, b2, b3, b4, b5, b6, b7, y):
 
 
 while maxBorder - minBorder > 0.000000001:
+    center = (maxBorder - minBorder) / 2
     if equate(a1, a2, a3, a4, a5, a6, a7, minBorder)*equate(a1, a2, a3, a4, a5, a6, a7, center) < 0:
         maxBorder = center
         print('ok')
@@ -54,7 +55,4 @@ while maxBorder - minBorder > 0.000000001:
             minBorder = center
             print('ok2')
 
-else:
-    print("Нижняя граница ", minBorder, "Верхняя граница ", maxBorder)
-
-
+print("Нижняя граница ", minBorder, "Верхняя граница ", maxBorder)
