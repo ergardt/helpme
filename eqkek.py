@@ -37,7 +37,7 @@ minBorder = float(abs(a7) / (abs(a7) + B))
 maxBorder = 1 + A/a1
 
 
-#print("Нижняя граница ",minBorder, "Верхняя граница ", maxBorder)
+print("Грубая нижняя граница ", minBorder, "Грубая верхняя граница ", maxBorder)
 
 
 # zMatrix = numpy.array([z^(2*n)], [z^(n + 2)], [z^(n + 1)], [z^n], [z^2], [z], [1])
@@ -46,13 +46,11 @@ def equate(b1, b2, b3, b4, b5, b6, b7, y):
 
 
 while maxBorder - minBorder > 0.000000001:
-    center = (maxBorder - minBorder) / 2
+    center = (maxBorder + minBorder) / 2
     if equate(a1, a2, a3, a4, a5, a6, a7, minBorder)*equate(a1, a2, a3, a4, a5, a6, a7, center) < 0:
         maxBorder = center
-        print('ok')
     else:
         if equate(a1, a2, a3, a4, a5, a6, a7, maxBorder)*equate(a1, a2, a3, a4, a5, a6, a7, center) < 0:
             minBorder = center
-            print('ok2')
 
 print("Нижняя граница ", minBorder, "Верхняя граница ", maxBorder)
